@@ -50,24 +50,57 @@ export default function DynamicRenderer() {
 
   const layout = config.layout || {};
 
+  // Helper pour extraire className/style d'une section
+  const getSectionProps = (section: any) => {
+    if (!section) return {};
+    const { className = '', style = {} } = section;
+    return { className, style };
+  };
+
+  // Déterminer la grille dynamiquement selon la présence du sidebar
+  const hasSidebar = !!layout.sidebar;
+  const gridClass = hasSidebar
+    ? 'grid grid-cols-[200px_1fr] grid-rows-[auto_1fr_auto] min-h-screen'
+    : 'grid grid-cols-1 grid-rows-[auto_1fr_auto] min-h-screen';
+
   return (
-    <div className="grid grid-cols-[200px_1fr] grid-rows-[auto_1fr_auto] min-h-screen">
+    <div className={gridClass}>
       {/* Header */}
-      <header className="col-span-2 row-start-1">
-        {renderSection(layout.header)}
-      </header>
+      {layout.header && (
+        <header
+          className={`${hasSidebar ? 'col-span-2' : ''} row-start-1 ${getSectionProps(layout.header).className}`}
+          style={getSectionProps(layout.header).style}
+        >
+          {renderSection(layout.header)}
+        </header>
+      )}
       {/* Sidebar */}
-      <aside className="row-span-2 row-start-2 col-start-1 bg-gray-50 p-4">
-        {renderSection(layout.sidebar)}
-      </aside>
+      {hasSidebar && (
+        <aside
+          className={`row-span-2 row-start-2 col-start-1 p-4 ${getSectionProps(layout.sidebar).className}`}
+          style={getSectionProps(layout.sidebar).style}
+        >
+          {renderSection(layout.sidebar)}
+        </aside>
+      )}
       {/* Main */}
-      <main className="col-start-2 row-start-2 p-8">
-        {renderSection(layout.main)}
-      </main>
+      {layout.main && (
+        <main
+          className={`${hasSidebar ? 'col-start-2' : 'col-start-1'} row-start-2 p-8 ${getSectionProps(layout.main).className}`}
+          style={getSectionProps(layout.main).style}
+        >
+          {renderSection(layout.main)}
+        </main>
+      )}
       {/* Footer */}
-      <footer className="col-span-2 row-start-3 bg-gray-100">
-        {renderSection(layout.footer)}
-      </footer>
+      {layout.footer && (
+        <footer
+          className={`${hasSidebar ? 'col-span-2' : ''} row-start-3 ${getSectionProps(layout.footer).className}`}
+          style={getSectionProps(layout.footer).style}
+        >
+          {renderSection(layout.footer)}
+        </footer>
+      )}
     </div>
   );
 }

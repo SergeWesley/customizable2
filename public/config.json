@@ -6,7 +6,7 @@
           "type": "Title",
           "props": {
             "text": "Mon Application",
-            "className": "text-2xl font-bold text-center py-4 bg-gray-100"
+            "className": "text-2xl font-bold text-center py-4"
           }
         }
       ]
@@ -16,20 +16,29 @@
         {
           "type": "Button",
           "props": {
-            "label": "Menu",
-            "onClickMessage": "Menu ouvert",
-            "className": "w-full my-2"
+            "label": "Accueil",
+            "onClickMessage": "Vous avez cliqué sur Accueil",
+            "className": "mb-4"
+          }
+        },
+        {
+          "type": "Button",
+          "props": {
+            "label": "À propos",
+            "onClickMessage": "Vous avez cliqué sur À propos"
           }
         }
       ]
     },
     "main": {
+      "className": "p-12",
+      "style": { "minHeight": "500px" },
       "components": [
         {
           "type": "Title",
           "props": {
             "text": "Bienvenue sur la page principale",
-            "className": "text-3xl font-bold text-blue-600"
+            "className": "text-3xl font-bold"
           }
         },
         {
@@ -45,9 +54,7 @@
           "props": {
             "title": "Card personnalisée",
             "content": "Exemple avancé.",
-            "size": "md",
-            "color": "red-200",
-            "className": "border-4 border-red-500",
+            "size": "lg",
             "style": { "maxWidth": "400px" }
           }
         }
@@ -59,7 +66,7 @@
           "type": "Title",
           "props": {
             "text": "© 2025 Mon App",
-            "className": "text-sm text-center text-gray-400 py-2"
+            "className": "text-sm text-center py-2"
           }
         }
       ]
