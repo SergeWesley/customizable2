@@ -1,0 +1,18 @@
+{
+  "components": [
+    {
+      "type": "Title",
+      "props": {
+        "text": "Bienvenue !",
+        "className": "text-3xl font-bold text-blue-600"
+      }
+    },
+    {
+      "type": "Button",
+      "props": {
+        "label": "Cliquez-moi",
+        "onClickMessage": "Bouton cliqué !"
+      }
+    }
+  ]
+}
